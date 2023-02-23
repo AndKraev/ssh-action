@@ -1,5 +1,5 @@
-name: 'Create SSH key'
-description: 'Creates ssh folder and add authorized key'
+name: 'Create SSH folder'
+description: 'Creates ssh folder with key and adds authorized key'
 inputs:
   ssh_key:
     required: true
