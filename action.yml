@@ -22,7 +22,7 @@ runs:
     - run: |
         echo "
         Host host
-        HostName {{ inputs.ssh_host }}
-        User {{ inputs.ssh_user }}
+        HostName ${{ inputs.ssh_host }}
+        User ${{ inputs.ssh_user }}
         " > ~/.ssh/config
       shell: bash
