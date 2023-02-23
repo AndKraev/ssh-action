@@ -10,21 +10,17 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Create SSH folder
-      run: mkdir ~/.ssh/
+    - run: mkdir ~/.ssh/
       shell: bash
 
-    - name: Install SSH Key
-      run: echo "${{ inputs.ssh_key }}" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+    - run: echo "${{ inputs.ssh_key }}" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
       shell: bash
         
-    - name: Adding Known Hosts
-      run: ssh-keyscan -T 60 ${{ inputs.ssh_host }} > ~/.ssh/known_hosts
+    - run: ssh-keyscan -T 60 ${{ inputs.ssh_host }} > ~/.ssh/known_hosts
       shell: bash
       
-    - name: Create config
       shell: bash
-      run: |
+    - run: |
         echo "
         Host host\n
         HostName {{ inputs.ssh_host }}\n
