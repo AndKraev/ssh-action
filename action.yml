@@ -5,6 +5,8 @@ inputs:
     required: true
   ssh_host:
     required: true
+  ssh_user:
+    required: true
 runs:
   using: "composite"
   steps:
@@ -19,3 +21,12 @@ runs:
     - name: Adding Known Hosts
       run: ssh-keyscan -T 60 ${{ inputs.ssh_host }} > ~/.ssh/known_hosts
       shell: bash
+      
+    - name: Create config
+      shell: bash
+      run: |
+        echo "
+        Host host\n
+        HostName {{ inputs.ssh_host }}\n
+        User {{ inputs.ssh_user }}
+        " > ~/.ssh/config
